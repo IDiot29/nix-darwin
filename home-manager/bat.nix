@@ -1,0 +1,11 @@
+# Bat configuration
+{ config, pkgs, ... }:
+
+{
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "TwoDark";
+    };
+  };
+}
