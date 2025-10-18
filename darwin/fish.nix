@@ -68,7 +68,7 @@
       starship init fish | source
 
       # Enable atuin
-      atuin init fish | source
+      atuin init fish | sed "s/-k up/up/g" | source 
     '';
 
     shellAliases = {
