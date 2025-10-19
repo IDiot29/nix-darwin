@@ -78,13 +78,8 @@
         # System-level configs
         ./darwin/homebrew.nix
         ./darwin/fish.nix
-
-        # Services
-        {
-          services.yabai = {
-            enable = true;
-          };
-        }
+        ./darwin/yabai.nix
+        ./darwin/skhd.nix
         
         # nix-homebrew (manages Homebrew installation)
         nix-homebrew.darwinModules.nix-homebrew
