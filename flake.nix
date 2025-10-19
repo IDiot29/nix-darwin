@@ -79,10 +79,12 @@
         ./darwin/homebrew.nix
         ./darwin/fish.nix
 
-	# Services
-	services.yabai = {
-	  enable = true;
-	};
+        # Services
+        {
+          services.yabai = {
+            enable = true;
+          };
+        }
         
         # nix-homebrew (manages Homebrew installation)
         nix-homebrew.darwinModules.nix-homebrew
