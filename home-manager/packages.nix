@@ -7,17 +7,13 @@
     neovim
     bat
     btop
-    fastfetch
     pwgen
     zoxide
     yazi
     starship
-    watch
     atuin
     gh
-    
-    # Development
-    go
+    minio-client
     
     # Kubernetes/DevOps
     kubectl
