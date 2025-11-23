@@ -13,7 +13,8 @@
     starship
     atuin
     gh
-    minio-client
+    #opencode
+
     
     # Kubernetes/DevOps
     kubectl
@@ -24,6 +25,5 @@
     # Containers
     podman
     podman-compose
-    opencode
   ];
 }
