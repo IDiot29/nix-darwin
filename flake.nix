@@ -78,8 +78,7 @@
         # System-level configs
         ./darwin/homebrew.nix
         ./darwin/fish.nix
-        ./darwin/yabai.nix
-        ./darwin/skhd.nix
+        ./darwin/aerospace.nix
         
         # nix-homebrew (manages Homebrew installation)
         nix-homebrew.darwinModules.nix-homebrew

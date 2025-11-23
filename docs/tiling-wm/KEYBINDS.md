@@ -1,16 +1,13 @@
-# Yabai + skhd Keybindings
+# AeroSpace Keybindings
 
-> **Mod Key**: `Option` (⌥) - Similar to Niri's Super key on Linux
->
-> **Note**: On MacBook keyboards, the Option key is next to Command (⌘)
+> **Mod Key**: `Option` (⌥) – same mod that was used with Yabai/SKHD
 
-This configuration provides tiling window management on macOS similar to Niri on NixOS.
+This layout recreates the old workflow using the native `services.aerospace`
+module shipped with nix-darwin.
 
 ---
 
 ## Window Focus (Navigation)
-
-Move focus between windows using Vim-style navigation:
 
 | Keybind | Action |
 |---------|--------|
@@ -23,8 +20,6 @@ Move focus between windows using Vim-style navigation:
 
 ## Window Movement
 
-Move windows around the workspace:
-
 | Keybind | Action |
 |---------|--------|
 | `Option + Shift + H` | Swap window with window to the left |
@@ -32,16 +27,14 @@ Move windows around the workspace:
 | `Option + Shift + K` | Swap window with window above |
 | `Option + Shift + L` | Swap window with window to the right |
 
-### Warp (Advanced Movement)
-
-Change window position in the BSP tree:
+### Move (Warp)
 
 | Keybind | Action |
 |---------|--------|
-| `Option + Ctrl + H` | Warp window to the left |
-| `Option + Ctrl + J` | Warp window down |
-| `Option + Ctrl + K` | Warp window up |
-| `Option + Ctrl + L` | Warp window to the right |
+| `Option + Ctrl + H` | Move focused window left |
+| `Option + Ctrl + J` | Move focused window down |
+| `Option + Ctrl + K` | Move focused window up |
+| `Option + Ctrl + L` | Move focused window right |
 
 ---
 
@@ -49,8 +42,8 @@ Change window position in the BSP tree:
 
 | Keybind | Action |
 |---------|--------|
-| `Option + Shift + R` | Resize window horizontally |
-| `Option + Shift + E` | Resize window vertically |
+| `Option + Shift + R` | Grow window width (+120 px) |
+| `Option + Shift + E` | Grow window height (+120 px) |
 
 ---
 
@@ -59,70 +52,49 @@ Change window position in the BSP tree:
 | Keybind | Action |
 |---------|--------|
 | `Option + Q` | Close focused window |
-| `Option + F` | Toggle fullscreen (zoom) |
-| `Option + Shift + F` | Toggle native fullscreen |
-| `Option + Shift + Space` | Toggle window float |
-| `Option + E` | Toggle split orientation (vertical/horizontal) |
-| `Option + Shift + B` | Balance space (equalize window sizes) |
+| `Option + F` | Toggle AeroSpace fullscreen |
+| `Option + Shift + F` | Toggle macOS native fullscreen |
+| `Option + Shift + Space` | Toggle floating/tiling for focused window |
+| `Option + E` | Toggle split orientation (horizontal ↔ vertical) |
+| `Option + Shift + B` | Balance window sizes in workspace |
 
 ---
 
 ## Applications
 
-Launch your favorite apps:
-
 | Keybind | Action |
 |---------|--------|
-| `Option + Return` | Open Terminal (Ghostty) |
-| `Option + B` | Open Browser (Google Chrome) |
-| `Option + N` | Open Finder |
-| `Option + D` | Open Spotlight (launcher) |
+| `Option + Return` | Launch Ghostty |
+| `Option + B` | Launch Google Chrome |
+| `Option + D` | Launch Spotlight |
 
 ---
 
-## Workspace/Space Management
-
-Switch between and manage macOS Spaces (similar to Niri workspaces):
-
-### Switch to Space
+## Workspace Management
 
 | Keybind | Action |
 |---------|--------|
-| `Option + 1-9` | Switch to space 1-9 |
-| `Option + Tab` | Focus recent space |
-| `Option + P` | Focus previous space |
-| `Option + N` | Focus next space |
+| `Option + 1-9` | Switch to workspace 1-9 |
+| `Option + Shift + 1-9` | Move focused window to workspace 1-9 |
+| `Option + Tab` | Toggle between current and previous workspace |
+| `Option + P` | Focus previous workspace (wraps) |
+| `Option + N` | Focus next workspace (wraps) |
+| `Option + Ctrl + N` | Jump to next workspace (creates if missing) |
+| `Option + Ctrl + X` | Jump to previous workspace |
 
-### Move Window to Space
-
-| Keybind | Action |
-|---------|--------|
-| `Option + Shift + 1-9` | Move window to space 1-9 |
-
-### Create/Destroy Spaces
-
-| Keybind | Action |
-|---------|--------|
-| `Option + Ctrl + N` | Create new space |
-| `Option + Ctrl + X` | Destroy current space |
+> AeroSpace workspaces are name-addressable and created on demand, so the
+> “create” / “destroy” semantics from Yabai map to the navigation keys above.
 
 ---
 
 ## Display/Monitor Management
 
-For multi-monitor setups:
-
-### Focus Display
-
 | Keybind | Action |
 |---------|--------|
-| `Option + Ctrl + 1-3` | Focus display 1-3 |
+| `Option + Ctrl + 1-3` | Focus monitor 1-3 |
+| `Option + Ctrl + Shift + 1-3` | Move focused window to monitor 1-3 |
 
-### Move Window to Display
-
-| Keybind | Action |
-|---------|--------|
-| `Option + Ctrl + Shift + 1-3` | Move window to display 1-3 |
+Monitor indexes follow the order reported by `aerospace list-monitors`.
 
 ---
 
@@ -130,19 +102,20 @@ For multi-monitor setups:
 
 | Keybind | Action |
 |---------|--------|
-| `Option + Shift + T` | Toggle layout (BSP <-> Float) |
-| `Option + R` | Rotate tree 90 degrees |
-| `Option + X` | Mirror tree horizontally (x-axis) |
-| `Option + Y` | Mirror tree vertically (y-axis) |
+| `Option + Shift + T` | Toggle tiling/floating layout for workspace |
+| `Option + R` | Toggle workspace orientation (horizontal ↔ vertical) |
+
+> AeroSpace does not expose direct “mirror X/Y” commands yet, so those bindings
+> are intentionally omitted.
 
 ---
 
-## Yabai Service Management
+## AeroSpace Service Management
 
 | Keybind | Action |
 |---------|--------|
-| `Option + Ctrl + Shift + R` | Restart yabai |
-| `Option + Ctrl + Shift + Q` | Stop yabai |
+| `Option + Ctrl + Shift + R` | Restart AeroSpace (`launchctl kickstart`) |
+| `Option + Ctrl + Shift + Q` | Stop AeroSpace (`launchctl bootout`) |
 
 ---
 
@@ -150,7 +123,7 @@ For multi-monitor setups:
 
 | Keybind | Action |
 |---------|--------|
-| `Option + Shift + Escape` | Lock screen |
+| `Option + Shift + Escape` | Lock screen (`pmset displaysleepnow`) |
 
 ### Screenshots (macOS Default)
 
@@ -158,11 +131,13 @@ For multi-monitor setups:
 |---------|--------|
 | `Cmd + Shift + 3` | Capture full screen |
 | `Cmd + Shift + 4` | Capture selection |
-| `Cmd + Shift + 5` | Open screenshot menu |
+| `Cmd + Shift + 5` | Screenshot toolbar |
 
 ---
 
 ## Mouse Actions
+
+Native macOS mouse shortcuts remain the same:
 
 | Action | Keybind |
 |--------|---------|
@@ -173,7 +148,7 @@ For multi-monitor setups:
 
 ## Window Rules
 
-These apps will NOT be tiled (will float by default):
+These apps float by default via `on-window-detected` rules:
 
 - System Settings / System Preferences
 - System Information
@@ -188,53 +163,28 @@ These apps will NOT be tiled (will float by default):
 
 ## Setup Tips
 
-### 1. Enable SIP Partial Disable
-
-Yabai requires disabling System Integrity Protection for some features.
-See: https://github.com/koekeishiya/yabai/wiki/Disabling-System-Integrity-Protection
-
-### 2. Grant Accessibility Permissions
+### Accessibility Permissions
 
 - System Settings → Privacy & Security → Accessibility
-- Add and enable `yabai` and `skhd`
+- Add and enable `AeroSpace`
 
-### 3. Mission Control Settings
+### Mission Control Settings
 
-For best experience:
 - System Settings → Desktop & Dock
-- Disable "Automatically rearrange Spaces based on most recent use"
-- Enable "Displays have separate Spaces" (multi-monitor)
+- Disable “Automatically rearrange Spaces based on most recent use”
+- Enable “Displays have separate Spaces” for multi-monitor setups
 
-### 4. Restart Services
-
-Via skhd:
-```
-Option + Ctrl + Shift + R
-```
-
-Or manually:
-```bash
-brew services restart yabai
-brew services restart skhd
-```
-
-### 5. Check Status
+### Restart / Status Commands
 
 ```bash
-brew services list
-yabai -m query --windows --window | jq
+launchctl kickstart -k "gui/$(id -u)/org.nixos.aerospace"
+launchctl bootout "gui/$(id -u)/org.nixos.aerospace"
+launchctl list | grep aerospace
 ```
 
 ---
 
 ## Resources
 
-- [Yabai Documentation](https://github.com/koekeishiya/yabai)
-- [skhd Documentation](https://github.com/koekeishiya/skhd)
-- [Nix Darwin](https://github.com/LnL7/nix-darwin)
-
----
-
-**Config Location**: `~/.config/nix-darwin/darwin/`
-- `yabai.nix` - Window manager configuration
-- `skhd.nix` - Keybinding configuration
+- [AeroSpace Documentation](https://nikitabobko.github.io/AeroSpace/)
+- `darwin/aerospace.nix` – nix-darwin configuration for AeroSpace + bindings
