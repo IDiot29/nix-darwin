@@ -16,6 +16,7 @@
       "pritunl"
       "telegram"
       "vlc"
+      "raycast"
     ];
     
     # Brews (CLI tools that need to be from brew)
