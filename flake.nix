@@ -1,6 +1,10 @@
 {
   description = "My Nix Darwin Configuration";
 
+  # nixConfig = {
+  #   warn-dirty = false;
+  # };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     
